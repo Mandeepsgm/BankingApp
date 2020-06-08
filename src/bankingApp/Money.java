@@ -19,26 +19,21 @@ public class Money implements Comparable {
 	 * @return Amount of money as an double type.
 	 */
 	public double getAmount() {
-		// @TODO:  Fill in the code for this
-		
+		return this.amount;
 	}
 	
 	/**
 	 * Returns the currency of this Money.
 	 * @return Currency object representing the currency of this Money
 	 */
-	public Currency getCurrency() {
-		// @TODO:  Fill in the code for this
-		
-	}
+	public Currency getCurrency() { return this.currency;	}
 	
 	/**
 	 * Returns the amount of the money in the string form "(amount) (currencyname)", e.g. "10.5 CAD".
 	 *  @return String representing the amount of Money.
 	 */
 	public String toString() {
-		// @TODO:  Fill in the code for this
-		
+		return this.amount+" "+this.currency.getName().toUpperCase();
 	}
 	
 	/**
@@ -46,8 +41,7 @@ public class Money implements Comparable {
 	 * @return The value of the Money in the "universal currency". (USD)
 	 */
 	public double getUniversalValue() {
-		// @TODO:  Fill in the code for this
-		
+		return Currency.round(this.amount*this.currency.getRate(),2);
 	}
 	
 	/**
@@ -56,8 +50,7 @@ public class Money implements Comparable {
 	 * @return A Boolean indicating if the two monies are equal.
 	 */
 	public boolean equals(Money other) {
-		// @TODO:  Fill in the code for this
-		
+		return this.getUniversalValue()==other.getUniversalValue();
 	}
 	
 	/**
@@ -67,8 +60,9 @@ public class Money implements Comparable {
 	 * (Remember to convert the other Money before adding the amounts)
 	 */
 	public Money add(Money other) {
-		// @TODO:  Fill in the code for this
-		
+		Money money = new Money(this.amount,this.currency);
+		money.amount = (money.getUniversalValue() + other.getUniversalValue())/money.currency.getRate();
+		return money;
 	}
 
 	/**
@@ -78,8 +72,9 @@ public class Money implements Comparable {
 	 * (Again, remember converting the value of the other Money to this Currency)
 	 */
 	public Money subtract(Money other) {
-		// @TODO:  Fill in the code for this
-		
+		Money money = new Money(this.amount,this.currency);
+		money.amount = (money.getUniversalValue() - other.getUniversalValue())/money.currency.getRate();
+		return money;
 	}
 	
 	/**
@@ -87,16 +82,15 @@ public class Money implements Comparable {
 	 * @return True if the amount of this Money is equal to 0.0, False otherwise
 	 */
 	public boolean isZero() {
-		// @TODO:  Fill in the code for this
-		
+		return this.amount==0.0;
 	}
 	/**
 	 * Negate the amount of money, i.e. if the amount is 10.0 CAD the negation returns -10.0 CAD
 	 * @return A new instance of the money class initialized with the new negated money amount.
 	 */
 	public Money negate() {
-		// @TODO:  Fill in the code for this
-		
+		Money negativeMoney = new Money(this.getAmount()*-1,this.getCurrency());
+		return negativeMoney;
 	}
 	
 	/**
@@ -109,7 +103,8 @@ public class Money implements Comparable {
 	 * A positive integer if this Money is more valuable than the other Money.
 	 */
 	public int compareTo(Object other) {
-		// @TODO:  Fill in the code for this
-		
+		Money otherMoney = null;
+		otherMoney = (Money)other;
+		return Double.compare(this.getUniversalValue(),otherMoney.getUniversalValue());
 	}
 }
