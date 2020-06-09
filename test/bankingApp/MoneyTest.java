@@ -10,7 +10,7 @@ import bankingApp.Money;
 
 public class MoneyTest {
 	protected Currency CAD, HKD, NOK, EUR;
-	protected Money CAD100, EUR10, CAD200, EUR20, CAD0, EUR0, CADnegative100;
+	protected Money CAD100, EUR10, CAD200, EUR20, CAD0, EUR0, CADnegative100, CAD10;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -21,7 +21,7 @@ public class MoneyTest {
 		
 		// setup sample money amounts
 		CAD100 = new Money(100, CAD);
-		
+		CAD10 = new Money(10, CAD);
 		EUR10 = new Money(10, EUR);
 		CAD200 = new Money(200, CAD);
 		EUR20 = new Money(20, EUR);
@@ -72,11 +72,13 @@ public class MoneyTest {
 
 	@Test
 	public void testNegate() {
-		fail("Write test case here");
+		assertEquals(CADnegative100.getAmount(),CAD100.negate().getAmount(),0.001);
 	}
 
 	@Test
 	public void testCompareTo() {
-		fail("Write test case here");
+		assertEquals(-1,CAD10.compareTo(EUR10));
+		assertEquals(1,CAD200.compareTo(CAD100));
+		assertEquals(0,CAD100.compareTo(CAD100));
 	}
 }
