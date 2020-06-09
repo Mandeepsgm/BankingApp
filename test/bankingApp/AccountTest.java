@@ -31,18 +31,19 @@ public class AccountTest {
 		testAccount.deposit(new Money(100, CAD));
 
 		// setup an initial deposit
-		RBC.deposit("Peter", new Money(500, CAD));
+		//RBC.deposit("Peter", new Money(500, CAD));
 	}
 
 	@Test
 	public void testAddWithdraw() {
 		// Something to consider - can you withdraw in a different currency?
-		fail("Write test case here");
+		testAccount.withdraw(new Money(20,CAD));
+		assertEquals(80.0, testAccount.getBalance().getAmount(),0.001);
 		
 	}
 	
 	@Test
 	public void testGetBalance() {
-		fail("Write test case here");
+		assertNotNull(testAccount.getBalance());
 	}
 }

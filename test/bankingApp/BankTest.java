@@ -45,12 +45,15 @@ public class BankTest {
 
 	@Test
 	public void testGetName() {
-		fail("Write test case here");
+		assertEquals("Royal Bank of Canada",RBC.getName());
+		assertNotEquals("TD Bank",RBC.getName());
+		assertNotNull(TD.getName());
 	}
 
 	@Test
 	public void testGetCurrency() {
-		fail("Write test case here");
+
+
 	}
 
 	@Test
